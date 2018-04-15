@@ -1,0 +1,19 @@
+<resources>
+
+    //activityMain
+    <string name="app_name">My Application</string>
+    <string name="First_name">First_name</string>
+    <string name="Last_name">Last_name</string>
+    <string name="Age">Age</string>Next
+    <string name="Next">Next</string>
+
+
+    //secendActivity
+    <string name="Easy">Easy\n2X2</string>
+    <string name="Normal">Normal\n4x4</string>
+    <string name="Hard">Hard\n6X6</string>
+
+
+
+
+</resources>

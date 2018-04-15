@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="horizontal">-->
+
+    <TextView
+        android:id="@+id/theTvDetailsUser"
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:gravity="left"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvMessageDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="left"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btEazy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_light"
+            android:fontFamily="@font/anonymous_pro_italic"
+            android:lineSpacingExtra="14sp"
+            android:text="@string/Easy"
+            android:textSize="30sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffe500"
+            android:fontFamily="@font/anonymous_pro_italic"
+            android:text="@string/Normal"
+            android:textSize="30sp"
+            tools:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/btHard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:fontFamily="@font/anonymous_pro_italic"
+            android:text="@string/Hard"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</LinearLayout>
