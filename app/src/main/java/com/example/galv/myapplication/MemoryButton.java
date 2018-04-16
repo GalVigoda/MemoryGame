@@ -1,21 +1,11 @@
 package com.example.galv.myapplication;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-
-
-import android.os.Build;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatDrawableManager;
-import android.support.v7.widget.ButtonBarLayout;
 import android.widget.Button;
-
 import android.widget.GridLayout;
-import android.widget.ImageButton;
-//import android.os.Build;
-//import android.support.v7.widget.ButtonBarLayout;
+
 
 @SuppressLint("AppCompatCustomView")
 public class MemoryButton extends Button {
@@ -45,23 +35,8 @@ public class MemoryButton extends Button {
 
         back = context.getResources().getDrawable(R.drawable.question, null);
         front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);
-       // front = context.getResources().getDrawable(this.frontImageDrawableId,null);
-      //   front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);   //Crash here =\ fix it
-       //  back = AppCompatDrawableManager.get().getDrawable(context, R.drawable.question);    //Crash here =\ fix it
-
-      //  front.setIm
-        //  front.setImageResource(R.drawable.background_grey);
-        // back = context.getDrawable(R.drawable.pic2857001201062919813);
-        //front = context.getDrawable(frontImageDrawableId);
-
-       // ContextCompat.getDrawable(getActivity(), R.drawable.name);
-       // back=AppCompatDrawableManager.get().getDrawable(context,frontImageDrawableId);
-        // back= context.getResources().getDrawable(R.drawable.star, null);
-        this.setBackground(back);
-       //s back.getDrawable(context, R.drawable.smiba123);
-
-     //   back=context.getResources().getDrawable(R.drawable.smiba123, null);
-        sizeCards(level);
+         this.setBackground(back);
+         sizeCards(level);
 
     }
 
@@ -72,11 +47,9 @@ public class MemoryButton extends Button {
                 GridLayout.LayoutParams tempParams =new GridLayout.LayoutParams(GridLayout.spec(row),GridLayout.spec(col));
                 tempParams.width=(int) getResources().getDisplayMetrics().density*160;
                 tempParams.height=(int) getResources().getDisplayMetrics().density*160;
-
                 setLayoutParams(tempParams);
                 break;
             }
-
 
             case NORMAL: {
                 GridLayout.LayoutParams tempParams =new GridLayout.LayoutParams(GridLayout.spec(row),GridLayout.spec(col));
@@ -96,7 +69,6 @@ public class MemoryButton extends Button {
             }
         }
     }
-
 
     public boolean isFlipped() {
         return isFlipped;
@@ -134,9 +106,5 @@ public class MemoryButton extends Button {
             setBackground(front);
             isFlipped=true;
         }
-
-
-
-
     }
 }

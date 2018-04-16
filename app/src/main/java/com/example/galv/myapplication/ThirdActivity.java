@@ -41,7 +41,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        tvCountDownText = findViewById(R.id.textTimer);
         createNewGame();
       //  updateTimer();
     }
@@ -65,6 +64,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void startTheTimer() {
+        findTimerViewById();
         checkTheTimesForTheGame();
          StartTimer();
     }
@@ -85,9 +85,9 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 //
 //    }
 
-    private void findViewById() {
+    private void findTimerViewById() {
 
-       // tvCountDownText = findViewById(R.id.textTimer); return!!!
+        tvCountDownText = findViewById(R.id.textTimer);
 
     }
 
@@ -112,14 +112,11 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
         public void updateTimer(){
-        int minutes=0;
-        int seconds= (int)(timeLeftInMilliSecendes/1000) % 60;
-        String timeLeftText;
-        timeLeftText= String.format("%02d:%02d", minutes, seconds);
-
-
-            tvCountDownText.setText(timeLeftText);
-
+            int minutes=0;
+            int seconds= (int)(timeLeftInMilliSecendes/1000) % 60;
+            String timeLeftText;
+            timeLeftText= String.format("%02d:%02d", minutes, seconds);
+             tvCountDownText.setText(timeLeftText);
         }
 
     private void detailsUser() {
@@ -178,7 +175,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             buttonGraphics[15] = R.drawable.white;
             buttonGraphics[16] = R.drawable.yellwlines;
             buttonGraphics[17] = R.drawable.bluered;
-           // buttonGraphics[18] = R.drawable.pinkyellow;
         }
     }
 
@@ -204,8 +200,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         if(isBusy)
             return;
 
-        MemoryButton button=(MemoryButton)view;
-
+            MemoryButton button=(MemoryButton)view;
 
         if (button.isMatched)
             return;
@@ -251,7 +246,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                     selectButton2=null;
                     isBusy=false;
                 }
-            },450);
+            },400);
         }
     }
 
