@@ -16,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText etFirstName;
-    EditText etLastName;
+    //EditText etLastName;
     EditText etAge;
     Button btNext;
     EditText etError;
     String regexStr = "^[0-9]*$";
     String errorUser = "Invalid input";
-    String firstName;
+    String name;
     String lastName;
     String age;
 
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 if (checkValid() == true) {
 
                     Intent intent = new Intent(MainActivity.this, SecendActivity.class);
-                    intent.putExtra("F_NAME", firstName);
-                    intent.putExtra("L_NAME", lastName);
+                    intent.putExtra("Name", name);
+                    //intent.putExtra("L_NAME", lastName);
                     intent.putExtra("AGE", age);
 
                     startActivity(intent);
@@ -59,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             boolean checkValid() {
-                if (firstName.length() > 0
-                        && lastName.length() > 0
+                if (name.length() > 0
                         && age.length() > 0
                         && age.trim().matches(regexStr))
                     return true;
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void findViewOfId() {
         etFirstName = (EditText) findViewById(R.id.etFirstName);
-        etLastName = (EditText) findViewById(R.id.etLastName);
+       // etLastName = (EditText) findViewById(R.id.etLastName);
         etAge = (EditText) findViewById(R.id.etAge);
         etError = (EditText) findViewById(R.id.etError);
         btNext = (Button) findViewById(R.id.btNext);
@@ -90,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getTheText() {
-        firstName = etFirstName.getText().toString();
-        lastName = etLastName.getText().toString();
+        name = etFirstName.getText().toString();
+       // lastName = etLastName.getText().toString();
         age = etAge.getText().toString();
     }
 

@@ -1,10 +1,9 @@
 <resources>
 
     //activityMain
-    <string name="app_name">My Application</string>
-    <string name="First_name">First_name</string>
-    <string name="Last_name">Last_name</string>
-    <string name="Age">Age</string>Next
+    <string name="app_name">Color Memory Game</string>
+    <string name="First_name">Name</string>
+    <string name="Age">Age</string>
     <string name="Next">Next</string>
 
 

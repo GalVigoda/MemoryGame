@@ -1,52 +1,48 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:paddingLeft="16dp"
-android:paddingRight="16dp">
-
-
-<ImageView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="168dp"
-   />/ android:background="@drawable/backgame" />
+    android:layout_height="match_parent"
+    android:background="@drawable/mainpicture1"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
-<EditText
-    android:id="@+id/etFirstName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="left"
-    android:hint="@string/First_name" />
 
-<EditText
-    android:id="@+id/etLastName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="left"
-    android:hint="@string/Last_name" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="168dp" />
 
-<EditText
-    android:id="@+id/etAge"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="left"
-    android:hint="@string/Age" />
-//CHEC2K//
-<Button
-    android:id="@+id/btNext"
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="right"
-    android:text="@string/Next" />
+    <EditText
+        android:id="@+id/etFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:hint="@string/First_name" />
 
-<EditText
-    android:id="@+id/etError"
-    android:layout_width="125dp"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:textColor="@android:color/holo_red_dark"
-    android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:hint="@string/Age" />
+
+    <Button
+        android:id="@+id/btNext"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/Next" />
+
+    <EditText
+        android:id="@+id/etError"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 </LinearLayout>

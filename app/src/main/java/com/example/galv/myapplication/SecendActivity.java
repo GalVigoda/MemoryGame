@@ -14,18 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;*/
 
-public class SecendActivity extends  MainActivity implements View.OnClickListener{
+public class SecendActivity extends MainActivity implements View.OnClickListener{
 
 
     private TextView tvDetailsUser;
-    private String firstName;
+    private String userName;
     private String lastName;
     private String age;
     private TextView messageDisplay;
-    int Eazy= 2 ,Noraml=4, Hard=6;
-    int levels[]= {Eazy,Noraml,Hard};
-    int level;
-    private Button btEazy,btNormal,btHard;
+    private int Easy= 2 , Noraml=4, Hard=6;
+    private int levels[]= {Easy,Noraml,Hard};
+    private int level;
+    private Button btEasy,btNormal,btHard;
 
 
     @Override
@@ -107,22 +107,24 @@ public class SecendActivity extends  MainActivity implements View.OnClickListene
 //        });
     }
 
+
+
     private void setTheText() {
-        tvDetailsUser.setText(firstName +" " + lastName+", "+ age +"\n\n");
-        messageDisplay.setText("Welcome to the Memory game\nPlease select level for the Memory game:");
+        tvDetailsUser.setText("Welcome " + userName +" ,"+ age +"\n\n");
+        messageDisplay.setText("Level:");
     }
 
 
     private void getIntents() {
-        firstName=getIntent().getExtras().getString("F_NAME");
-        lastName=getIntent().getExtras().getString("L_NAME");
+        userName=getIntent().getExtras().getString("Name");
+        //lastName=getIntent().getExtras().getString("L_NAME");
         age=getIntent().getExtras().getString("AGE");
     }
 
     private void findViewOfButton() {
         tvDetailsUser=(TextView)findViewById(R.id.theTvDetailsUser);
         messageDisplay=findViewById(R.id.tvMessageDisplay);
-        btEazy=(Button)findViewById(R.id.btEazy);
+        btEasy=(Button)findViewById(R.id.btEasy);
         btNormal=(Button)findViewById(R.id.btNormal);
         btHard=(Button)findViewById(R.id.btHard);
 
@@ -130,7 +132,7 @@ public class SecendActivity extends  MainActivity implements View.OnClickListene
     }
 
     private void setOnClickListener() {
-        btEazy.setOnClickListener(this);
+        btEasy.setOnClickListener(this);
         btNormal.setOnClickListener(this);
         btHard.setOnClickListener(this);
     }
@@ -138,7 +140,7 @@ public class SecendActivity extends  MainActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.btEazy:
+            case R.id.btEasy:
                 level=levels[0];
                 break;
             case R.id.btNormal:
@@ -150,6 +152,7 @@ public class SecendActivity extends  MainActivity implements View.OnClickListene
         }
         Intent intent = new Intent(SecendActivity.this, ThirdActivity.class);
         intent.putExtra("level",level);
+        intent.putExtra("userName",userName);
         startActivity(intent);
     }
 

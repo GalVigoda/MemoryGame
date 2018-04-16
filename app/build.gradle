@@ -11,8 +11,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true // i add this line
         generatedDensities = [] // i add this line
-
     }
+
+
     buildTypes {
         release {
             minifyEnabled false

@@ -24,7 +24,7 @@
         android:layout_height="48dp"
         android:gravity="left"
         android:text="TextView"
-        android:textSize="18sp" />
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btEazy"
+            android:id="@+id/btEasy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
