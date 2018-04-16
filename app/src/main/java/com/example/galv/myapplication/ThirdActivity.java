@@ -1,21 +1,14 @@
 package com.example.galv.myapplication;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
-
 import java.util.Random;
-import java.util.logging.Level;
 
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
-
 
     private TextView userName;
     private int numRow;
@@ -36,7 +29,9 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
     GridLayout grid_layout;
 
-      @Override
+    //check
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
