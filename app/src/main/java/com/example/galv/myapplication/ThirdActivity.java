@@ -18,7 +18,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private int numOfCorrectCrd,numRow, numCol, level,numberOfElements ,timeForTimer;
     private static final int  NORMAL=4, HARD=6;
 
-    private int[] buttonsGraphicsLocations; // 2-1 2-2 -2-3 HOLD THE ACTUAL RESPURCE VALUES THE INTEGER VALUES
+    private int[] buttonsGraphicsLocations;
     private int [] buttonGraphics;
 
     private MemoryButton[] buttons;
@@ -30,12 +30,9 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
     //timer
     private TextView tvCountDownText;
-    //private long pauseOffSet;
     private CountDownTimer CountDownTimer;
     private long timeLeftInMilliSecendes;; // 30 seconds== 30 000 milliseconds
 
-    private boolean timerRuning;
-    //check
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,17 +71,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         timeLeftInMilliSecendes=timeForTimer;
     }
 
-//    private void StopTimer() {
-//       // if (gameFinish=true)
-//            mCountDownTimer111.cancel();
-//            timeSimple Countdown Timer - Android Studio Tutorial
-//
-//
-//
-//        Runing=false;
-//
-//    }
-
     private void findTimerViewById() {
 
         tvCountDownText = findViewById(R.id.textTimer);
@@ -108,7 +94,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             }
         }.start();
 
-       // timeRuning=true;
     }
 
         public void updateTimer(){
@@ -154,8 +139,8 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void inputPicToButton() {
-        buttonGraphics[0] = R.drawable.blue2;
-        buttonGraphics[1] = R.drawable.blue;
+        buttonGraphics[0] = R.drawable.blue2;  //for sure (easy level)
+        buttonGraphics[1] = R.drawable.blue;    //for sure (easy level)
         if (level==NORMAL || level== HARD) {
             buttonGraphics[2] = R.drawable.red;
             buttonGraphics[3] = R.drawable.green2;
@@ -226,7 +211,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             button.setEnabled(false);
 
             selectButton1=null;
-            checkifWin();
+            checkIfWin();
             return;
         }
         else{
@@ -250,14 +235,8 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void checkifWin() {
+    private void checkIfWin() {
 
-
-        //backToActivity2();
-
-
-
-        //intent.putExtra("L_NAME", lastName);
         numOfCorrectCrd++;
         if(numOfCorrectCrd==numberOfElements/2) {
               gameFinishWin=true;
@@ -267,19 +246,19 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
            // thread.start();
           //  finish=true;
         }
-        }
+    }
 
     private void ShowFinalmessage() {
         Context context = getApplicationContext();
         if(gameFinishWin==true) {
             gameFinishWin = false;
             Toast.makeText(context, "You Win ! ! ! :) ", Toast.LENGTH_SHORT).show();
-            CountDownTimer.cancel();
+            CountDownTimer.onFinish();
         }
         if(gameFinishLose==true) {
             gameFinishLose = false;
             Toast.makeText(context, "Game Over You Lose :( ", Toast.LENGTH_SHORT).show();
-            CountDownTimer.cancel();
+            CountDownTimer.onFinish();
         }
     }
 

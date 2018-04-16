@@ -6,14 +6,12 @@ import android.support.v7.widget.AppCompatDrawableManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-
 @SuppressLint("AppCompatCustomView")
 public class MemoryButton extends Button {
 ////
     protected int row;
     protected int col;
     protected int frontImageDrawableId;
-    private int level;
 
     protected boolean isFlipped= false;
     protected boolean isMatched= false;
@@ -28,16 +26,12 @@ public class MemoryButton extends Button {
         row = r;
         col = c;
         this.frontImageDrawableId = frontImageDrawableId;
-           // front= context.getDrawable(frontImageDrawableId);
-           // back= context.getDrawable(R.drawable.smiba123);
-
-
 
         back = context.getResources().getDrawable(R.drawable.question, null);
         front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);
+
          this.setBackground(back);
          sizeCards(level);
-
     }
 
     private void sizeCards(int level) {
@@ -48,6 +42,7 @@ public class MemoryButton extends Button {
                 tempParams.width=(int) getResources().getDisplayMetrics().density*160;
                 tempParams.height=(int) getResources().getDisplayMetrics().density*160;
                 setLayoutParams(tempParams);
+
                 break;
             }
 
@@ -69,6 +64,7 @@ public class MemoryButton extends Button {
             }
         }
     }
+
 
     public boolean isFlipped() {
         return isFlipped;
