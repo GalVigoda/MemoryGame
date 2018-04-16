@@ -94,6 +94,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             }
         }.start();
 
+       // timeRuning=true;
     }
 
         public void updateTimer(){
@@ -253,12 +254,12 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         if(gameFinishWin==true) {
             gameFinishWin = false;
             Toast.makeText(context, "You Win ! ! ! :) ", Toast.LENGTH_SHORT).show();
-            CountDownTimer.onFinish();
+
         }
         if(gameFinishLose==true) {
             gameFinishLose = false;
             Toast.makeText(context, "Game Over You Lose :( ", Toast.LENGTH_SHORT).show();
-            CountDownTimer.onFinish();
+
         }
     }
 
