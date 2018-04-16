@@ -19,7 +19,7 @@ import android.widget.ImageButton;
 
 @SuppressLint("AppCompatCustomView")
 public class MemoryButton extends Button {
-///
+////
     protected int row;
     protected int col;
     protected int frontImageDrawableId;
