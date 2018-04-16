@@ -70,8 +70,8 @@ public class MemoryButton extends Button {
 
             case EASY: {
                 GridLayout.LayoutParams tempParams =new GridLayout.LayoutParams(GridLayout.spec(row),GridLayout.spec(col));
-                tempParams.width=(int) getResources().getDisplayMetrics().density*200;
-                tempParams.height=(int) getResources().getDisplayMetrics().density*200;
+                tempParams.width=(int) getResources().getDisplayMetrics().density*160;
+                tempParams.height=(int) getResources().getDisplayMetrics().density*160;
 
                 setLayoutParams(tempParams);
                 break;
@@ -80,16 +80,16 @@ public class MemoryButton extends Button {
 
             case NORMAL: {
                 GridLayout.LayoutParams tempParams =new GridLayout.LayoutParams(GridLayout.spec(row),GridLayout.spec(col));
-                tempParams.width=(int) getResources().getDisplayMetrics().density*90;
-                tempParams.height=(int) getResources().getDisplayMetrics().density*90;
+                tempParams.width=(int) getResources().getDisplayMetrics().density*85;
+                tempParams.height=(int) getResources().getDisplayMetrics().density*85;
                 setLayoutParams(tempParams);
 
                 break;
             }
             case HARD: {
                 GridLayout.LayoutParams tempParams =new GridLayout.LayoutParams(GridLayout.spec(row),GridLayout.spec(col));
-                tempParams.width=(int) getResources().getDisplayMetrics().density*55;
-                tempParams.height=(int) getResources().getDisplayMetrics().density*55;
+                tempParams.width=(int) getResources().getDisplayMetrics().density*58;
+                tempParams.height=(int) getResources().getDisplayMetrics().density*58;
                 setLayoutParams(tempParams);
 
                 break;
@@ -121,12 +121,13 @@ public class MemoryButton extends Button {
 
     public void flip(){
 
-        if (isMatched)
+        if (isMatched())
+
             return;
 
         if(isFlipped) {
             setBackground(back);
-            isFlipped = false;
+            setFlipped(false);
         }
         else
         {

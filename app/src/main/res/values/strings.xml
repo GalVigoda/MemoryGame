@@ -4,7 +4,7 @@
     <string name="app_name">Color Memory Game</string>
     <string name="First_name">Name</string>
     <string name="Age">Age</string>
-    <string name="Next">Next</string>
+    <string name="Next">"LET'S START!"</string>
 
 
     //secendActivity

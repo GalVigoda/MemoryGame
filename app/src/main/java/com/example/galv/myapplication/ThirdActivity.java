@@ -1,86 +1,57 @@
 package com.example.galv.myapplication;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridLayout;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 import java.util.Random;
+
+import android.widget.Toast;
 
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView userName;
-    private int numRow;
-    private int numCol;
-    private int level;
-    private int numberOfElements; //*level
-    private static final int EASY=2, NORMAL=4, HARD=6;
-    // public static final int BOARD_EASY =EASY*EASY, BOARD_NORMAL = NORMAL*NORMAL ,BOARD_HARD = HARD*HARD ;
-
-    private MemoryButton[] buttons;
+    private int numOfCorrectCrd,numRow, numCol, level,numberOfElements ,timeForTimer;
+    private static final int  NORMAL=4, HARD=6;
 
     private int[] buttonsGraphicsLocations; // 2-1 2-2 -2-3 HOLD THE ACTUAL RESPURCE VALUES THE INTEGER VALUES
     private int [] buttonGraphics;
 
+    private MemoryButton[] buttons;
     private MemoryButton selectButton1;
     private MemoryButton selectButton2;
-    private boolean isBusy = false;
+    private boolean isBusy = false,gameFinishWin=false ,gameFinishLose=false;
 
     GridLayout grid_layout;
 
+    //timer
+    private TextView tvCountDownText;
+    //private long pauseOffSet;
+    private CountDownTimer CountDownTimer;
+    private long timeLeftInMilliSecendes;; // 30 seconds== 30 000 milliseconds
+
+    private boolean timerRuning;
     //check
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-
+        tvCountDownText = findViewById(R.id.textTimer);
         createNewGame();
+      //  updateTimer();
     }
 
     private void createNewGame() {
 
-        // Bundle ex;
         Intent intent = getIntent();
         if (intent != null) {
-            //   ex = intent.getExtras();
             level = getIntent().getExtras().getInt("level");
             startGame();
-
-//            switch (level) {
-//
-//                case NORMAL: {
-//
-//                   startGame();
-//                        //}
-//
-////                    for (int r = 0; r < numRow; r++) {
-////                        for (int c = 0; c < numCol; c++) {
-////                            int location = r * numCol + c;
-////                            //tempImageId = ((r * (numRow - fixIndexNumber)) + c) / 2;
-////                            //buttons[(r * (numRow - fixIndexNumber)) + c]
-////                            int place = buttonsGraphicsLocations[location];
-////                            MemoryButton tempButton = new MemoryButton(this, r, c, buttonGraphics[place]);
-////                            tempButton.setId(View.generateViewId());
-////                            tempButton.setOnClickListener(this);
-////                            buttons[location] = tempButton;
-////                            grid_layout.addView(tempButton);
-////
-////                //  }
-//                    break;
-//                }
-//
-//
-//                case EASY: {
-//                    startGame();
-//                    break;
-//                }
-//                case HARD: {
-//                    startGame();
-//                    break;
-//                }
-//            }
         }
     }
 
@@ -90,15 +61,71 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         inputPicToButton();
         shuffleButtonsGraphics();
         createMemoryButtons();
+        startTheTimer();
     }
+
+    private void startTheTimer() {
+        checkTheTimesForTheGame();
+         StartTimer();
+    }
+
+    private void checkTheTimesForTheGame() {
+        timeForTimer = getIntent().getExtras().getInt("timeForTimer");
+        timeLeftInMilliSecendes=timeForTimer;
+    }
+
+//    private void StopTimer() {
+//       // if (gameFinish=true)
+//            mCountDownTimer111.cancel();
+//            timeSimple Countdown Timer - Android Studio Tutorial
+//
+//
+//
+//        Runing=false;
+//
+//    }
+
+    private void findViewById() {
+
+       // tvCountDownText = findViewById(R.id.textTimer); return!!!
+
+    }
+
+    private void StartTimer() {
+
+        CountDownTimer =new CountDownTimer(timeLeftInMilliSecendes,1000) {
+            @Override
+            public void onTick(long long1) {
+                timeLeftInMilliSecendes=long1;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+                gameFinishLose=true;
+                ShowFinalmessage();
+                backToSecendActivity();
+            }
+        }.start();
+
+       // timeRuning=true;
+    }
+
+        public void updateTimer(){
+        int minutes=0;
+        int seconds= (int)(timeLeftInMilliSecendes/1000) % 60;
+        String timeLeftText;
+        timeLeftText= String.format("%02d:%02d", minutes, seconds);
+
+
+            tvCountDownText.setText(timeLeftText);
+
+        }
 
     private void detailsUser() {
        String StringUserName = getIntent().getExtras().getString("userName");
         userName=(TextView)findViewById(R.id.userName);
         userName.setText(StringUserName);
-
-
-
     }
 
     private void createMemoryButtons() {
@@ -204,6 +231,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             button.setEnabled(false);
 
             selectButton1=null;
+            checkifWin();
             return;
         }
         else{
@@ -223,9 +251,57 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                     selectButton2=null;
                     isBusy=false;
                 }
-            },500);
+            },450);
         }
     }
 
+    private void checkifWin() {
 
+
+        //backToActivity2();
+
+
+
+        //intent.putExtra("L_NAME", lastName);
+        numOfCorrectCrd++;
+        if(numOfCorrectCrd==numberOfElements/2) {
+              gameFinishWin=true;
+               // closeTimer();
+               ShowFinalmessage();
+               backToSecendActivity();
+           // thread.start();
+          //  finish=true;
+        }
+        }
+
+    private void ShowFinalmessage() {
+        Context context = getApplicationContext();
+        if(gameFinishWin==true) {
+            gameFinishWin = false;
+            Toast.makeText(context, "You Win ! ! ! :) ", Toast.LENGTH_SHORT).show();
+            CountDownTimer.cancel();
+        }
+        if(gameFinishLose==true) {
+            gameFinishLose = false;
+            Toast.makeText(context, "Game Over You Lose :( ", Toast.LENGTH_SHORT).show();
+            CountDownTimer.cancel();
+        }
+    }
+
+    private void backToSecendActivity() {
+       CountDownTimer.cancel();
+
+        Handler tempHandler = new Handler();
+        tempHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent backMenu = new Intent(ThirdActivity.this, SecendActivity.class);
+                startActivity(backMenu);
+            }
+        }, 2000);
+
+    }
 }
+
+
+
