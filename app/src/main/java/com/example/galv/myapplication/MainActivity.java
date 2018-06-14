@@ -6,8 +6,6 @@ import android.os.Bundle;
 //package com.galv.android.projectnumber_1;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,14 +14,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText etFirstName;
-    //EditText etLastName;
     EditText etAge;
-    Button btNext;
     EditText etError;
+
+    Button btNext;
+    Button Record;
+
     String regexStr = "^[0-9]*$";
     String errorUser = "Invalid input";
     String name;
-    String lastName;
     String age;
 
 
@@ -41,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 getTheText();
-
 
                 if (checkValid() == true) {
 
@@ -53,33 +50,42 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("AGE", age);
 
                     startActivity(intent);
-
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 } else
                     etError.setText(errorUser);
             }
 
-            boolean checkValid() {
-                if (name.length() > 0
-                        && age.length() > 0
-                        && age.trim().matches(regexStr))
-                    return true;
-                return false;
+        });
+        Record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                    Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
-
 
         });
 
     }
 
+    boolean checkValid() {
+        if (name.length() > 0
+                && age.length() > 0
+                && age.trim().matches(regexStr))
+            return true;
+        return false;
+
+    }
+
     private void findViewOfId() {
         etFirstName = (EditText) findViewById(R.id.etFirstName);
-       // etLastName = (EditText) findViewById(R.id.etLastName);
         etAge = (EditText) findViewById(R.id.etAge);
         etError = (EditText) findViewById(R.id.etError);
         btNext = (Button) findViewById(R.id.btNext);
+        Record = (Button) findViewById(R.id.Records);
     }
-
 
 //    private void newIntent(){
 //        Intent intent = new Intent(getBaseContext(etFirstName.getText()), SecendActivity.class);
@@ -87,10 +93,8 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 //        }
 
-
     private void getTheText() {
         name = etFirstName.getText().toString();
-       // lastName = etLastName.getText().toString();
         age = etAge.getText().toString();
     }
 

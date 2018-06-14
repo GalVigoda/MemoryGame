@@ -1,9 +1,17 @@
 package com.example.galv.myapplication;
+import tyrantgit.explosionfield.ExplosionField;
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import android.transition.Explode;
+import android.transition.Transition;
 import android.view.View;
 import android.widget.GridLayout;
 import android.os.CountDownTimer;
@@ -12,34 +20,43 @@ import java.util.Random;
 
 import android.widget.Toast;
 
+@SuppressWarnings("ALL")
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView userName;
-    private int numOfCorrectCrd,numRow, numCol, level,numberOfElements ,timeForTimer;
-    private static final int  NORMAL=4, HARD=6;
+    private int numOfCorrectCrd, numRow, numCol, level, numberOfElements, timeForTimer;
+    private static final int NORMAL = 4, HARD = 6;
 
     private int[] buttonsGraphicsLocations;
-    private int [] buttonGraphics;
+    private int[] buttonGraphics;
 
     private MemoryButton[] buttons;
     private MemoryButton selectButton1;
     private MemoryButton selectButton2;
-    private boolean isBusy = false,gameFinishWin=false ,gameFinishLose=false;
+    private boolean isBusy = false, gameFinishWin = false, gameFinishLose = false;
 
     GridLayout grid_layout;
 
     //timer
     private TextView tvCountDownText;
     private CountDownTimer CountDownTimer;
-    private long timeLeftInMilliSecendes;; // 30 seconds== 30 000 milliseconds
+    private long timeLeftInMilliSecendes;
+    ; // 30 seconds== 30 000 milliseconds
 
+    long animationDurtion = 1000; // miliSecends
+    ExplosionField explosionField;
+    final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
         createNewGame();
-      //  updateTimer();
+
+
+        //ExplosionField
+        //      explosionField = ExplosionFie
+        //  updateTimer();
     }
 
     private void createNewGame() {
@@ -63,12 +80,12 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private void startTheTimer() {
         findTimerViewById();
         checkTheTimesForTheGame();
-         StartTimer();
+        StartTimer();
     }
 
     private void checkTheTimesForTheGame() {
         timeForTimer = getIntent().getExtras().getInt("timeForTimer");
-        timeLeftInMilliSecendes=timeForTimer;
+        timeLeftInMilliSecendes = timeForTimer;
     }
 
     private void findTimerViewById() {
@@ -79,35 +96,34 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
     private void StartTimer() {
 
-        CountDownTimer =new CountDownTimer(timeLeftInMilliSecendes,1000) {
+        CountDownTimer = new CountDownTimer(timeLeftInMilliSecendes, 1000) {
             @Override
             public void onTick(long long1) {
-                timeLeftInMilliSecendes=long1;
+                timeLeftInMilliSecendes = long1;
                 updateTimer();
             }
 
             @Override
             public void onFinish() {
-                gameFinishLose=true;
-                ShowFinalmessage();
-                backToSecendActivity();
+                gameFinishLose = true;
+                FinishGame();
             }
         }.start();
 
-       // timeRuning=true;
+        // timeRuning=true;
     }
 
-        public void updateTimer(){
-            int minutes=0;
-            int seconds= (int)(timeLeftInMilliSecendes/1000) % 60;
-            String timeLeftText;
-            timeLeftText= String.format("%02d:%02d", minutes, seconds);
-             tvCountDownText.setText(timeLeftText);
-        }
+    public void updateTimer() {
+        int minutes = 0;
+        int seconds = (int) (timeLeftInMilliSecendes / 1000) % 60;
+        String timeLeftText;
+        timeLeftText = String.format("%02d:%02d", minutes, seconds);
+        tvCountDownText.setText(timeLeftText);
+    }
 
     private void detailsUser() {
-       String StringUserName = getIntent().getExtras().getString("userName");
-        userName=(TextView)findViewById(R.id.userName);
+        String StringUserName = getIntent().getExtras().getString("userName");
+        userName = (TextView) findViewById(R.id.userName);
         userName.setText(StringUserName);
     }
 
@@ -126,12 +142,12 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void buildBorad() {
-        grid_layout = (GridLayout)findViewById(R.id.grid_layout);
+        grid_layout = (GridLayout) findViewById(R.id.grid_layout);
         numRow = level;
         numCol = level;
         numberOfElements = numCol * numRow;
 
-        buttons=new MemoryButton[numberOfElements];
+        buttons = new MemoryButton[numberOfElements];
         grid_layout.setColumnCount(numCol);
         grid_layout.setRowCount(numRow);
         buttonGraphics = new int[numberOfElements / 2];
@@ -142,7 +158,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private void inputPicToButton() {
         buttonGraphics[0] = R.drawable.blue2;  //for sure (easy level)
         buttonGraphics[1] = R.drawable.blue;    //for sure (easy level)
-        if (level==NORMAL || level== HARD) {
+        if (level == NORMAL || level == HARD) {
             buttonGraphics[2] = R.drawable.red;
             buttonGraphics[3] = R.drawable.green2;
             buttonGraphics[4] = R.drawable.green;
@@ -150,7 +166,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             buttonGraphics[6] = R.drawable.puruple;
             buttonGraphics[7] = R.drawable.greencircle;
         }
-        if (level== HARD) {
+        if (level == HARD) {
             buttonGraphics[8] = R.drawable.brown;
             buttonGraphics[9] = R.drawable.orange;
             buttonGraphics[10] = R.drawable.hetz;
@@ -166,42 +182,42 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void shuffleButtonsGraphics() {
-        Random rand=new Random();
-        for (int i=0; i<numberOfElements ; i++)
-        {
-            buttonsGraphicsLocations[i]=i% (numberOfElements/2);
+        Random rand = new Random();
+        for (int i = 0; i < numberOfElements; i++) {
+            buttonsGraphicsLocations[i] = i % (numberOfElements / 2);
         }
-        for(int i=0; i<numberOfElements ; i++) {
-            int temp =buttonsGraphicsLocations[i];
-            int swapIndex=rand.nextInt(4);
+        for (int i = 0; i < numberOfElements; i++) {
+            int temp = buttonsGraphicsLocations[i];
+            int swapIndex = rand.nextInt(4);
 
-            buttonsGraphicsLocations[i]=buttonsGraphicsLocations[swapIndex];
-            buttonsGraphicsLocations[swapIndex]=temp;
+            buttonsGraphicsLocations[i] = buttonsGraphicsLocations[swapIndex];
+            buttonsGraphicsLocations[swapIndex] = temp;
         }
     }
 
     @Override
     public void onClick(View view) {
-
-        if(isBusy)
+        //doAnimationWin();
+        if (isBusy)
             return;
 
-            MemoryButton button=(MemoryButton)view;
+        MemoryButton button = (MemoryButton) view;
 
         if (button.isMatched)
             return;
 
-        if(selectButton1==null) {
+        if (selectButton1 == null) {
             selectButton1 = button;
             selectButton1.flip();
+
             return;
         }
 
-        if(selectButton1.getId()==button.getId()) {
+        if (selectButton1.getId() == button.getId()) {
             return;
         }
 
-        if (selectButton1.getFrontImageDrawableId()==button.getFrontImageDrawableId()){
+        if (selectButton1.getFrontImageDrawableId() == button.getFrontImageDrawableId()) {
 
             button.flip();
 
@@ -211,72 +227,130 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             selectButton1.setEnabled(false);
             button.setEnabled(false);
 
-            selectButton1=null;
+            selectButton1 = null;
             checkIfWin();
             return;
-        }
-        else{
+        } else {
 
-            selectButton2=button;
+            selectButton2 = button;
             selectButton2.flip();
-            isBusy=true;
-            final Handler handler= new Handler();
-            handler.postDelayed(new Runnable(){
+            isBusy = true;
 
-                @Override
-                public void run() {
-                    selectButton2.flip();
-                    selectButton1.flip();
+            handler.postDelayed(new Runnable() {
 
-                    selectButton1=null;
-                    selectButton2=null;
-                    isBusy=false;
-                }
-            },400);
-        }
+            @Override
+            public void run() {
+                selectButton2.flip();
+                selectButton1.flip();
+
+                selectButton1 = null;
+                selectButton2 = null;
+                isBusy = false;
+            }
+        }, 400);
+    }
     }
 
     private void checkIfWin() {
 
         numOfCorrectCrd++;
-        if(numOfCorrectCrd==numberOfElements/2) {
-              gameFinishWin=true;
-               // closeTimer();
-               ShowFinalmessage();
-               backToSecendActivity();
-           // thread.start();
-          //  finish=true;
+        if (numOfCorrectCrd == numberOfElements / 2) {
+            gameFinishWin = true;
+            // closeTimer();
+            FinishGame();
+          //  backToSecendActivity();
+            // thread.start();
+            //  finish=true;
         }
     }
 
-    private void ShowFinalmessage() {
+    private void FinishGame() {
         Context context = getApplicationContext();
-        if(gameFinishWin==true) {
-            gameFinishWin = false;
-            Toast.makeText(context, "You Win ! ! ! :) ", Toast.LENGTH_SHORT).show();
+        if (gameFinishWin == true) { // win
+                doAnimationWin();
+                gameFinishWin = false;
+                String Win="You Win ! ! ! :) " ;
+                Toast.makeText(context, Win, Toast.LENGTH_SHORT).show();
 
         }
-        if(gameFinishLose==true) {
-            gameFinishLose = false;
-            Toast.makeText(context, "Game Over You Lose :( ", Toast.LENGTH_SHORT).show();
+        if (gameFinishLose == true) { // Lose
+                doAnimationLose();
+                gameFinishLose = false;
+                String lose="Game Over You Lose :( " ;
+                Toast.makeText(context, lose, Toast.LENGTH_SHORT).show();
 
         }
     }
 
-    private void backToSecendActivity() {
-       CountDownTimer.cancel();
 
-        Handler tempHandler = new Handler();
-        tempHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent backMenu = new Intent(ThirdActivity.this, SecendActivity.class);
-                startActivity(backMenu);
-            }
-        }, 2000);
+    protected void doAnimationWin() {
+
+        //add animation win!!!
+
+        handler.postDelayed(backToSecendActivity, 3000);
+
+       }
+
+
+
+    protected void doAnimationLose() {
+
+        explosionField = ExplosionField.attach2Window(this);
+        explosionField.explode(grid_layout);
+
+
+
+
+        handler.postDelayed(backToSecendActivity, 3000);
 
     }
-}
+
+    private Runnable backToSecendActivity=new Runnable() {
+        @Override
+        public void run() {
+            finish();
+        }
+    };
+
+// settings
+//        ObjectAnimator animatorX=ObjectAnimator.ofFloat( buttonGraphics[0],"x",420f);
+//        //bjectAnimator animatorY=ObjectAnimator.ofFloat( buttonGraphics[1],"x",200f);
+//        animatorX.setDuration(animationDurtion);  // time show
+//        //for start the animations:
+//        AnimatorSet animatorSet=new AnimatorSet();
+//        animatorSet.playTogether(animatorX);//,animatorY);
+//        animatorSet.start();
+
+
+//
+//    private void doAnimationLose() {
+
+//        explosionField.explode(grid_layout);
+//
+//        for (int  i=0; i <100000000 ; i++ )             //// delete it!!
+//        {}
+//
+//    }
+
+
+
+
+
+
+        //I fixed from mMtala num 1
+//       CountDownTimer.cancel();
+//
+//        Handler tempHandler = new Handler();
+//        tempHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent backMenu = new Intent(ThirdActivity.this, SecendActivity.class);
+//                startActivity(backMenu);
+//            }
+//        }, 2000);
+
+    }
+
 
 
 

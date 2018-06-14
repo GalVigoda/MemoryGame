@@ -1,18 +1,23 @@
 <resources>
 
+    //fragmentOne
+    <string name="RECORD_TABLE">RECORD TABLE</string>
+    <string name="RECORD_TABLE_Easy">Easy</string>
+    <string name="RECORD_TABLE_Normal">Normal</string>
+    <string name="RECORD_TABLE_Hard">Hard</string>
+
     //activityMain
     <string name="app_name">Color Memory Game</string>
     <string name="First_name">Name</string>
     <string name="Age">Age</string>
-    <string name="Next">"LET'S START!"</string>
+    <string name="Next">"S T A R T !"</string>
 
 
     //secendActivity
     <string name="Easy">Easy\n2X2</string>
     <string name="Normal">Normal\n4x4</string>
     <string name="Hard">Hard\n6X6</string>
-
-
+    <string name="title_activity_record_table">RecordTableActivity</string>
 
 
 </resources>

@@ -37,14 +37,25 @@
 
     <Button
         android:id="@+id/btNext"
-        android:layout_marginTop="100dp"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="100dp"
         android:background="@android:color/transparent"
         android:text="@string/Next"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_dark" />
 
+    <Button
+        android:id="@+id/Records"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="015dp"
+        android:text="@string/RECORD_TABLE"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
+
+
+    //android:lines="1"
 </LinearLayout>
