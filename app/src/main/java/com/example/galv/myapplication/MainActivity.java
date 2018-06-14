@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etError;
 
     Button btNext;
-    Button Record;
+    Button Result;
 
     String regexStr = "^[0-9]*$";
     String errorUser = "Invalid input";
@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        Record.setOnClickListener(new View.OnClickListener() {
+        Result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                    Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
 
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         etAge = (EditText) findViewById(R.id.etAge);
         etError = (EditText) findViewById(R.id.etError);
         btNext = (Button) findViewById(R.id.btNext);
-        Record = (Button) findViewById(R.id.Records);
+        Result = (Button) findViewById(R.id.Result);
     }
 
 //    private void newIntent(){
