@@ -26,6 +26,8 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private TextView userName;
     private int numOfCorrectCrd, numRow, numCol, level, numberOfElements, timeForTimer;
     private static final int NORMAL = 4, HARD = 6;
+    private String StringUserName;
+    DatabaseHelper scoreDB;
 
     private int[] buttonsGraphicsLocations;
     private int[] buttonGraphics;
@@ -122,9 +124,10 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void detailsUser() {
-        String StringUserName = getIntent().getExtras().getString("userName");
+        StringUserName = getIntent().getExtras().getString("userName");
         userName = (TextView) findViewById(R.id.userName);
         userName.setText(StringUserName);
+        scoreDB=new DatabaseHelper(this);
     }
 
     private void createMemoryButtons() {
@@ -267,11 +270,10 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private void FinishGame() {
         Context context = getApplicationContext();
         if (gameFinishWin == true) { // win
-                doAnimationWin();
-                gameFinishWin = false;
-                String Win="You Win ! ! ! :) " ;
-                Toast.makeText(context, Win, Toast.LENGTH_SHORT).show();
-
+            String Win="You Win ! ! ! :) " ;
+            Toast.makeText(context, Win, Toast.LENGTH_SHORT).show();
+               doAnimationWin();
+               gameFinishWin = false;
         }
         if (gameFinishLose == true) { // Lose
                 doAnimationLose();
@@ -283,13 +285,30 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+
     protected void doAnimationWin() {
 
         //add animation win!!!
-
-        handler.postDelayed(backToSecendActivity, 3000);
-
+        CountDownTimer.cancel();
+        handler.postDelayed(goToListScoreActivity, 3000);
+        handler.postDelayed(addData, 3000);
        }
+
+    private Runnable addData=new Runnable() {
+        @Override
+        public void run() {
+            boolean insertData= scoreDB.addData(StringUserName,timeLeftInMilliSecendes);
+            Context context = getApplicationContext();
+            if (insertData==true) {
+                String save = "this data save ";
+                Toast.makeText(context, save, Toast.LENGTH_SHORT).show();
+            }
+            else{
+                String notSave = "this data wasn't save ";
+                Toast.makeText(context, notSave, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
 
 
@@ -301,16 +320,18 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        handler.postDelayed(backToSecendActivity, 3000);
+        handler.postDelayed(goToListScoreActivity, 3000);
 
     }
 
-    private Runnable backToSecendActivity=new Runnable() {
+    private Runnable goToListScoreActivity=new Runnable() {
         @Override
         public void run() {
-            finish();
+            Intent intent=new Intent(ThirdActivity.this, ListScore.class);
+            startActivity(intent);
         }
     };
+
 
 // settings
 //        ObjectAnimator animatorX=ObjectAnimator.ofFloat( buttonGraphics[0],"x",420f);

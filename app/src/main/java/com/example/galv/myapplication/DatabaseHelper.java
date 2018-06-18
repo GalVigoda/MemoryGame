@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME= "result_table";
     public static final String COL1= "NAME";
     public static final String SCORE= "SCORE";
-    public int theSCORE;
+    public long theSCORE;
     //public static final String CO3= "ADDRESS";
 
     public DatabaseHelper(Context context) {
@@ -33,12 +33,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    @Override
-    public boolean addData(String name, int score) {
+
+    public boolean addData(String name, long score) {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(COL1,name);
         contentValues.put(SCORE,score);
 
+        long result=db.insert(TABLE_NAME,null,contentValues);
+
+            if(result==-1) {//return -1 id error
+                return false;
+            }
+                else{
+                    return true;
+            }
+
+        }
     }
-}
+
+
