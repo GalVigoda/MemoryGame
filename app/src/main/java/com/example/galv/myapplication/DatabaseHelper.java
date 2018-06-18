@@ -2,6 +2,7 @@ package com.example.galv.myapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME= "result_table";
     public static final String COL1= "NAME";
     public static final String SCORE= "SCORE";
-    public long theSCORE;
+  // public long theSCORE;
     //public static final String CO3= "ADDRESS";
 
     public DatabaseHelper(Context context) {
@@ -49,6 +50,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     return true;
             }
 
+        }
+        public Cursor getListContents(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor data= db.rawQuery("SELECT +FROM "+TABLE_NAME, null);
+        return data;
         }
     }
 
