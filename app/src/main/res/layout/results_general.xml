@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/mainpicture1">
+
+    <TextView
+        android:id="@+id/button"
+        android:layout_marginTop="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="180px"
+        android:gravity="center"
+        android:text="@string/RESULTS_TABLE"
+        android:textColor="#060303"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/easy2"
+        android:layout_marginTop="75dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:text="@string/RESULTS_TABLE_Easy"
+        android:textColor="#FF000000"
+        android:textSize="25dp"/>
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+
+
+    <Button
+        android:id="@+id/Normal"
+        android:layout_marginTop="75dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/RESULTS_TABLE_Normal"
+        android:textColor="#FF000000"
+        android:textSize="25dp"
+        />
+    <!--android:layout_marginEnd="16dp"-->
+    <!--android:layout_marginStart="8dp"-->
+
+    <Button
+        android:id="@+id/hard"
+        android:layout_marginTop="75dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/RESULTS_TABLE_Hard"
+        android:textColor="#FF000000"
+        android:textSize="25dp"       />
+
+
+    <fragment
+        android:id="@+id/fr1"
+        android:name="com.example.galv.myapplication.FragmentOneTable"
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:layout_above="@+id/fr2"
+        android:layout_alignParentStart="true"
+        android:layout_weight="10"></fragment>
+
+    <fragment
+        android:id="@+id/fr2"
+        android:name="com.example.galv.myapplication.FragmenTwoMap"
+        android:layout_width="match_parent"
+        android:layout_height="188dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
+        android:layout_weight="1"></fragment>
+
+
+</RelativeLayout>
