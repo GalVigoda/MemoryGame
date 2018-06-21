@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String name="gal";
-                String last="vigodiii";
-                String age_string="walllaa";
+                String name="gal"; // only for test
+                String last="vigodiii"; // only for test
+                String age_string="walllaa"; // only for test
                 boolean insertData= myDB.addData(name,last,age_string);
                 Context context = getApplicationContext();
                 if (insertData==true) {

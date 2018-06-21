@@ -1,20 +1,11 @@
 package com.example.galv.myapplication;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.galv.myapplication.R;
-import com.example.galv.myapplication.User;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class column_listAdapter extends ArrayAdapter<User> {
@@ -54,15 +45,5 @@ public class column_listAdapter extends ArrayAdapter<User> {
     }
 }
 
-            //
-//            name.setText(user.getName());
-//            points.setText((int) user.getPoint());
-//            return conveArView;
-//        } else {
-//            TextView name = (TextView) converView.findViewById(R.id.textName);
-//            name.setText("not good");
-//        }
-//    return converView;
-//    }
 
 //}

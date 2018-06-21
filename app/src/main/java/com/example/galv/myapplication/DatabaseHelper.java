@@ -53,7 +53,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL4,stage);
        // contentValues.put(COL1_SCORE,score);
 
-      //  Log.d("addNewData", "addData: Adding "+name+" to "+TABLE_NAME);
         long result=db.insert(TABLE_NAME,null,contentValues);
 
             if(result==-1) {//return -1 id error

@@ -49,17 +49,4 @@ public class ListScore extends AppCompatActivity {
     }
 }
 
-//        int numberOfRows = data.getColumnCount();
-//        if(numberOfRows==0) {
-//            Toast.makeText(ListScore.this, "empty Table nothing to show", Toast.LENGTH_SHORT).show();
-//            }else{
-//                while (data.moveToNext()){
-//                    user=new User(data.getString(0),data.getLong(1));//0== NAME , 1==SCORE
-//                userList.add(user);
-//                }
-//
-//                column_listAdapter adapter = new column_listAdapter(this,R.layout.list_adapter,userList);
-//                listView=(ListView) findViewById(R.id.theListScore);
-//                listView.setAdapter(adapter);
-//        }
 
