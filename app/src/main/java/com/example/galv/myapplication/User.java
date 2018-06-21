@@ -2,20 +2,37 @@ package com.example.galv.myapplication;
 
 public class User {
 
-    public String name;
-    public long point;
+    private String FirstName;
+    private String LastName;
+    private String FavFood;
 
-    public User(String Fname,long score){
-        this.name=Fname;
-        this.point=score;
+    public User(String fName,String lName, String fFood){
+        FirstName = fName;
+        LastName = lName;
+        FavFood = fFood;
     }
 
-
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return FirstName;
     }
 
-    public long getPoint() {
-        return point;
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
+    }
+
+    public String getFavFood() {
+        return FavFood;
+    }
+
+    public void setFavFood(String favFood) {
+        FavFood = favFood;
     }
 }

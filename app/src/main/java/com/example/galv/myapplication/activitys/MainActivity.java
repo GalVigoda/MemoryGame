@@ -1,4 +1,4 @@
-package com.example.galv.myapplication;
+package com.example.galv.myapplication.activitys;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.galv.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
-
+                    Intent intent = new Intent(MainActivity.this, ListScore.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }

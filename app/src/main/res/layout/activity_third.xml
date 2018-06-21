@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shutterstock55594699l"
     android:orientation="vertical"
-    tools:context=".ThirdActivity"
+    tools:context=".activitys.ThirdActivity"
     tools:targetApi="11">
 
     <android.support.constraint.ConstraintLayout

@@ -1,17 +1,12 @@
-package com.example.galv.myapplication;
+package com.example.galv.myapplication.activitys;
 import tyrantgit.explosionfield.ExplosionField;
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import android.transition.Explode;
-import android.transition.Transition;
 import android.view.View;
 import android.widget.GridLayout;
 import android.os.CountDownTimer;
@@ -20,6 +15,10 @@ import java.util.Random;
 
 import android.widget.Toast;
 
+import com.example.galv.myapplication.DatabaseHelper;
+import com.example.galv.myapplication.MemoryButton;
+import com.example.galv.myapplication.R;
+
 @SuppressWarnings("ALL")
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,7 +26,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private int numOfCorrectCrd, numRow, numCol, level, numberOfElements, timeForTimer;
     private static final int NORMAL = 4, HARD = 6;
     private String StringUserName;
-    DatabaseHelper scoreDB;
+    DatabaseHelper myDB;
 
     private int[] buttonsGraphicsLocations;
     private int[] buttonGraphics;
@@ -54,7 +53,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
         createNewGame();
-
+        myDB=new DatabaseHelper(this);
 
         //ExplosionField
         //      explosionField = ExplosionFie
@@ -127,7 +126,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         StringUserName = getIntent().getExtras().getString("userName");
         userName = (TextView) findViewById(R.id.userName);
         userName.setText(StringUserName);
-        scoreDB=new DatabaseHelper(this);
+
     }
 
     private void createMemoryButtons() {
@@ -206,7 +205,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
         MemoryButton button = (MemoryButton) view;
 
-        if (button.isMatched)
+        if (button.isMatched())
             return;
 
         if (selectButton1 == null) {
@@ -270,8 +269,8 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private void FinishGame() {
         Context context = getApplicationContext();
         if (gameFinishWin == true) { // win
-            String Win="You Win ! ! ! :) " ;
-            Toast.makeText(context, Win, Toast.LENGTH_SHORT).show();
+                String Win="You Win ! ! ! :) " ;
+                Toast.makeText(context, Win, Toast.LENGTH_SHORT).show();
                doAnimationWin();
                gameFinishWin = false;
         }
@@ -287,31 +286,29 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
     protected void doAnimationWin() {
-
         //add animation win!!!
+        grid_layout.animate().rotation(2800).setDuration(2000);
+
+        handler.postDelayed(delayAny, 3000);
+        // only for the test >>> change gal +20
+
+
         CountDownTimer.cancel();
         handler.postDelayed(goToListScoreActivity, 3000);
-        handler.postDelayed(addData, 3000);
+
        }
 
-    private Runnable addData=new Runnable() {
+
+    private Runnable delayAny=new Runnable() {
         @Override
         public void run() {
-            boolean insertData= scoreDB.addData(StringUserName,timeLeftInMilliSecendes);
-            Context context = getApplicationContext();
-            if (insertData==true) {
-                String save = "this data save ";
-                Toast.makeText(context, save, Toast.LENGTH_SHORT).show();
-            }
-            else{
-                String notSave = "this data wasn't save ";
-                Toast.makeText(context, notSave, Toast.LENGTH_SHORT).show();
-            }
+
         }
     };
-
-
-
+//    public void AddData(String name, long score) {
+//        boolean insertData = myDB.addData(name, score);
+//
+//    }
     protected void doAnimationLose() {
 
         explosionField = ExplosionField.attach2Window(this);
@@ -327,10 +324,22 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private Runnable goToListScoreActivity=new Runnable() {
         @Override
         public void run() {
-            Intent intent=new Intent(ThirdActivity.this, ListScore.class);
-            startActivity(intent);
+            boolean insertData= myDB.addData("gal","MEITAL","PLESEwORK");
+            Context context = getApplicationContext();
+            if (insertData==true) {
+                String save = "this data save  :) :)";
+                Toast.makeText(context, save, Toast.LENGTH_LONG).show();
+            }
+            else{
+                String notSave = "this data wasnt save ";
+                Toast.makeText(context, notSave, Toast.LENGTH_LONG).show();
+            }
+                finish(); //for now
+            //Intent intent=new Intent(ThirdActivity.this, ListScore.class);
+          //  startActivity(intent);
         }
     };
+
 
 
 // settings

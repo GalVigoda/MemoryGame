@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.galv.myapplication.R;
+import com.example.galv.myapplication.User;
 
 import org.w3c.dom.Text;
 
@@ -31,11 +35,34 @@ public class column_listAdapter extends ArrayAdapter<User> {
         converView = mInflater.inflate(mViewResourceId, null);
         User user = users.get(position);
 
-            TextView name = (TextView) converView.findViewById(R.id.textName);
-            TextView points = (TextView) converView.findViewById(R.id.Score);
+        if (user != null) {
+            TextView firstName = (TextView) converView.findViewById(R.id.textFirstName);
+            TextView lastName = (TextView) converView.findViewById(R.id.textLastName);
+            TextView favFood = (TextView) converView.findViewById(R.id.textFavFood);
+            if (firstName != null) {
+                firstName.setText(user.getFirstName());
+            }
+            if (lastName != null) {
+                lastName.setText((user.getLastName()));
+            }
+            if (favFood != null) {
+                favFood.setText((user.getFavFood()));
+            }
+        }
 
-            name.setText(user.getName());
-            points.setText(user.getName());
-            return converView;
+        return converView;
     }
 }
+
+            //
+//            name.setText(user.getName());
+//            points.setText((int) user.getPoint());
+//            return conveArView;
+//        } else {
+//            TextView name = (TextView) converView.findViewById(R.id.textName);
+//            name.setText("not good");
+//        }
+//    return converView;
+//    }
+
+//}

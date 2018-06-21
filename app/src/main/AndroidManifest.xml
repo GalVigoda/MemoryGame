@@ -11,22 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecendActivity" />
+        <activity android:name=".activitys.SecendActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ThirdActivity" />
-        <activity android:name="ListScore" />
-        <activity android:name=".ResultsActivity" />
+        <activity android:name=".activitys.ThirdActivity" />
+        <activity android:name=".activitys.ListScore" />
+
     </application>
 
 </manifest>
