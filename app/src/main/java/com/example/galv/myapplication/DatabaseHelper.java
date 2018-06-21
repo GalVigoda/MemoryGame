@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //public static final String CO3= "ADDRESS";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, TABLE_NAME, null, 1);
     }
 
     @Override
