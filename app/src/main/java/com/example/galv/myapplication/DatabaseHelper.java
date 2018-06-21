@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -22,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //public static final String CO3= "ADDRESS";
 
     public DatabaseHelper(Context context) {
-        super(context, TABLE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -65,10 +64,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
         }
-        public Cursor getListContents(){
-        SQLiteDatabase db =this.getWritableDatabase();
-        Cursor data= db.rawQuery("SELECT * FROM "+TABLE_NAME, null); // change astrix bimlom plus
-        return data;
+        public Cursor getListContents() {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor data= db.rawQuery("SELECT * FROM " + TABLE_NAME+" ORDER BY "
+                    +COL1+ " DESC", null);
+            return data;
         }
     }
 

@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
+import android.content.Context;
+import com.example.galv.myapplication.DatabaseHelper;
 import com.example.galv.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,13 +28,14 @@ public class MainActivity extends AppCompatActivity {
     String errorUser = "Invalid input";
     String name;
     String age;
-
+    DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewOfId();
+        myDB=new DatabaseHelper(this);
         setOnClickButton();//
 
 
@@ -62,6 +65,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String name="gal";
+                String last="vigodiii";
+                String age_string="walllaa";
+                boolean insertData= myDB.addData(name,last,age_string);
+                Context context = getApplicationContext();
+                if (insertData==true) {
+                    String save = "this data save  :) :)";
+                    Toast.makeText(context, save, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    String notSave = "this data wasnt save ";
+                    Toast.makeText(context, notSave, Toast.LENGTH_LONG).show();
+
+                }
                     Intent intent = new Intent(MainActivity.this, ListScore.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
