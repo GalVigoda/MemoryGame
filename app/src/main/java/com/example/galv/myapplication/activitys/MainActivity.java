@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("AGE", age);
 
                     startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
+                    //TODO missing file slide_out_left in the git repo
+                    //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 } else
                     etError.setText(errorUser);
             }
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                     Intent intent = new Intent(MainActivity.this, ListScore.class);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
+                //TODO missing file slide_out_left in the git repo
+                 //   overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
 
         });

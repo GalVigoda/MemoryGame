@@ -26,8 +26,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER KEY AUTOINCREMENT, "+
+    String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY, "+
             "FNAME TEXT, LNAME TEXT, STAGE TEXT)"; //+ COL1_SCORE+"POINT)"??
+
+
+/*
+
+
+    android.database.sqlite.SQLiteException: near "AUTOINCREMENT": syntax error (code 1): , while compiling: CREATE TABLE result_table(ID INTEGER KEY AUTOINCREMENT, FNAME TEXT, LNAME TEXT, STAGE TEXT)
+
+    // answer from stackover flow
+
+    https://stackoverflow.com/questions/7594541/android-table-creation-failure-near-autoincrement-syntax-error
+
+
+ */
+
+
         db.execSQL(createTable);
     }
 
