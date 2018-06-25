@@ -14,7 +14,7 @@ import android.content.Context;
 import com.example.galv.myapplication.DatabaseHelper;
 import com.example.galv.myapplication.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
 
     EditText etFirstName;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     String name;
     String age;
     DatabaseHelper myDB;
+    Map map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
