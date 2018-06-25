@@ -16,8 +16,6 @@ import com.example.galv.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     EditText etFirstName;
     EditText etAge;
