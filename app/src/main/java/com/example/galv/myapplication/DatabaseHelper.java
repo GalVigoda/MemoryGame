@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL3= "LNAME";
     private static final String COL4= "STAGE";
 
-    private static final String NUM_OF_SCORES_TO_SHOW = "10";
+    private static final String NUM_OF_SCORES_TO_SHOW = "20";
   // public long theSCORE;
     //public static final String CO3= "ADDRESS";
 
@@ -52,15 +52,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
         onCreate(db);
     }
- //???
-    public Cursor highestScores(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+TABLE_NAME+" DESC LIMIT " + NUM_OF_SCORES_TO_SHOW; ///" ORDER BY "+COL1_SCORE +
-        Cursor data = db.rawQuery(query,null);
-        return data;
-    }
 
-    public boolean addData(String name, String lastName,String stage ) {   //, long score
+
+
+    public boolean addData(String name, String lastName,int stage ) {   //, long score
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(COL2,name);
@@ -81,9 +76,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public Cursor getListContents() {
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor data= db.rawQuery("SELECT * FROM " + TABLE_NAME+" ORDER BY "
-                    +COL1+ " DESC", null);
+                    +COL4+ " DESC LIMIT " + NUM_OF_SCORES_TO_SHOW, null);
             return data;
         }
+
+    public Cursor highestScores(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME+" DESC LIMIT " + NUM_OF_SCORES_TO_SHOW; ///" ORDER BY "+COL1_SCORE +
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
     }
 
 

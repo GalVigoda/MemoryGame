@@ -22,4 +22,8 @@
 
     <string name="highest_scores">Highessdsdt Scores</string>
 
+
+    //maps
+    <string name="google_maps_API_key">AIzaSyCIIC9YoreJvegJNlZmW0bU9JgtultuYHM</string>
+
 </resources>

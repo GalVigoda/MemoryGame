@@ -16,6 +16,8 @@ import com.example.galv.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     EditText etFirstName;
     EditText etAge;
@@ -67,20 +69,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String name="gal"; // only for test
-                String last="vigodiii"; // only for test
-                String age_string="walllaa"; // only for test
-                boolean insertData= myDB.addData(name,last,age_string);
-                Context context = getApplicationContext();
-                if (insertData==true) {
-                    String save = "this data save  :) :)";
-                    Toast.makeText(context, save, Toast.LENGTH_LONG).show();
-                }
-                else{
-                    String notSave = "this data wasnt save ";
-                    Toast.makeText(context, notSave, Toast.LENGTH_LONG).show();
-
-                }
+//                String name="gal"; // only for test
+//                String last="vigodiii"; // only for test
+//                int age_string=2; // only for test
+//                boolean insertData= myDB.addData(name,last,age_string);
+//                Context context = getApplicationContext();
+//                if (insertData==true) {
+//                    String save = "this data save  :) :)";
+//                    Toast.makeText(context, save, Toast.LENGTH_LONG).show();
+//                }
+//                else{
+//                    String notSave = "this data wasnt save ";
+//                    Toast.makeText(context, notSave, Toast.LENGTH_LONG).show();
+//
+//                }
                     Intent intent = new Intent(MainActivity.this, ListScore.class);
                     startActivity(intent);
 

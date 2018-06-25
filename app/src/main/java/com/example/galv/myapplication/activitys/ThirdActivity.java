@@ -145,6 +145,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
     private void buildBorad() {
         grid_layout = (GridLayout) findViewById(R.id.grid_layout);
+
         numRow = level;
         numCol = level;
         numberOfElements = numCol * numRow;
@@ -314,17 +315,14 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         explosionField = ExplosionField.attach2Window(this);
         explosionField.explode(grid_layout);
 
-
-
-
-        handler.postDelayed(goToListScoreActivity, 3000);
+        handler.postDelayed(back, 3000);
 
     }
 
     private Runnable goToListScoreActivity=new Runnable() {
         @Override
         public void run() {
-            boolean insertData= myDB.addData("gal","MEITAL","PLESEwORK");
+            boolean insertData= myDB.addData(StringUserName," ",(int)timeLeftInMilliSecendes*(level/2));
             Context context = getApplicationContext();
             if (insertData==true) {
                 String save = "this data save  :) :)";
@@ -334,10 +332,18 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                 String notSave = "this data wasnt save ";
                 Toast.makeText(context, notSave, Toast.LENGTH_LONG).show();
             }
-                finish(); //for now
-            //Intent intent=new Intent(ThirdActivity.this, ListScore.class);
-          //  startActivity(intent);
+
+           Intent intent=new Intent(ThirdActivity.this, ListScore.class);
+           startActivity(intent);
         }
+    };
+
+    private Runnable back=new Runnable() {
+        @Override
+        public void run() {
+
+            finish(); //for now
+                   }
     };
 
 
@@ -353,14 +359,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
 //
-//    private void doAnimationLose() {
 
-//        explosionField.explode(grid_layout);
-//
-//        for (int  i=0; i <100000000 ; i++ )             //// delete it!!
-//        {}
-//
-//    }
 
 
 

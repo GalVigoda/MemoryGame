@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.database.Cursor;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,7 +17,7 @@ import com.example.galv.myapplication.column_listAdapter;
 
 import java.util.ArrayList;
 
-public class ListScore extends AppCompatActivity {
+public class ListScore extends AppCompatActivity  {
 
     DatabaseHelper myDB;
     ArrayList<User> userList; // string ==name+score
@@ -23,8 +26,9 @@ public class ListScore extends AppCompatActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_one_layout_list);
+        setContentView(R.layout.results_general);
 
         myDB = new DatabaseHelper(this);
 
@@ -47,6 +51,13 @@ public class ListScore extends AppCompatActivity {
             listView.setAdapter(adapter);
         }
     }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_one_layout_list, container, false);
+        return view;
+    }
+
 }
 
 
