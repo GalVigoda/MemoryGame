@@ -28,16 +28,16 @@ public class column_listAdapter extends ArrayAdapter<User> {
 
         if (user != null) {
             TextView firstName = (TextView) converView.findViewById(R.id.textFirstName);
-            TextView lastName = (TextView) converView.findViewById(R.id.textLastName);
-            TextView favFood = (TextView) converView.findViewById(R.id.textFavFood);
+            TextView lastName = (TextView) converView.findViewById(R.id.textStage);
+            TextView favFood = (TextView) converView.findViewById(R.id.textPoint);
             if (firstName != null) {
                 firstName.setText(user.getFirstName());
             }
             if (lastName != null) {
-                lastName.setText((user.getLastName()));
+                lastName.setText((user.getStage()));
             }
             if (favFood != null) {
-                favFood.setText((user.getFavFood()));
+                favFood.setText((user.getPoints()));
             }
         }
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 import com.example.galv.myapplication.R;
+import com.example.galv.myapplication.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,13 +25,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class Map implements OnMapReadyCallback {
-
-
+    private SupportMapFragment mapFragment;
     private GoogleMap mMap;
-    private int latitude, longitude;
+    private double latitude, longitude;
+    private Context context;
     private Geocoder gc;
     private LatLng MyLatLng;
-    private MarkerOptions markerOptionsMyLocation;
+    private MarkerOptions markerOptionsMyLocation, markerOptionsPlayerLocation;
 
 //    private static final String TAG = "Map";
 //    private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -66,6 +67,14 @@ public class Map implements OnMapReadyCallback {
 //        }
 //        return false;
 //    }
+public Map(SupportMapFragment mapFragment,double latitude,double longitude, Context context){
+    this.mapFragment=mapFragment;
+    this.latitude=latitude;
+    this.longitude=longitude;
+    this.context=context;
+    mapFragment.getMapAsync(this);
+    gc=new Geocoder(context);
+}
 
 
     @Override
@@ -98,6 +107,35 @@ public class Map implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(MyLatLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
     }
+
+//    public void setMarkersOnMap(User user) throws IOException {
+//
+//        //place users markers
+//        mMap.clear();
+//        mMap.addMarker(markerOptionsMyLocation);
+//
+//        //to specific location
+//       //THIS LINE NEED RETURN THE LOCATION FROM THE USER.
+//        markerOptionsPlayerLocation = new MarkerOptions();
+//
+//        //to specific address
+//        List<android.location.Address> ls=gc.getFromLocation(User.getLatitude(), userInfo.getLongitude(), 1);
+//        android.location.Address address=ls.get(0);
+//        //get current province/City
+//        String street=address.getAddressLine(0);
+//
+//        //set markers on the map
+//        markerOptionsPlayerLocation.position(PlayerLatLng);
+//        markerOptionsPlayerLocation.title("Name: "+userInfo.getName() + " , Time: " + userInfo.getPoints()+" sec");
+//        markerOptionsPlayerLocation.snippet("Location: "+street);
+//        markerOptionsPlayerLocation.icon(BitmapDescriptorFactory.fromResource(R.drawable.mark));
+//        mMap.addMarker(markerOptionsPlayerLocation);
+//
+//        //move map camera
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(PlayerLatLng));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+//    }
+
 
     public void moveCameraToCurrentPos() {
         mMap.clear();

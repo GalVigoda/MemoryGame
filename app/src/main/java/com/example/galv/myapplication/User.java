@@ -3,13 +3,13 @@ package com.example.galv.myapplication;
 public class User {
 
     private String FirstName;
-    private String LastName;
-    private String FavFood;
+    private String stage;
+    private String points;
 
-    public User(String fName,String lName, String fFood){
-        FirstName = fName;
-        LastName = lName;
-        FavFood = fFood;
+    public User(String fName,String stage, String points){
+        setFirstName(fName);
+        setStage(stage);
+        setPoints(points);
     }
 
     public String getFirstName() {
@@ -20,19 +20,19 @@ public class User {
         FirstName = firstName;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getStage() {
+        return stage;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setStage(String stage) {
+        this.stage = stage;
     }
 
-    public String getFavFood() {
-        return FavFood;
+    public String getPoints() {
+        return this.points;
     }
 
-    public void setFavFood(String favFood) {
-        FavFood = favFood;
+    public void setPoints(String points) {
+        this.points = points;
     }
 }
